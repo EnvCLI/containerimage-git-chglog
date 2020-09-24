@@ -2,10 +2,10 @@
 # Build Stage
 ############################################################
 # Set the base image
-FROM docker.io/golang:1.13.2-buster
+FROM docker.io/golang:1.15
 
 # Build
-RUN go get -u github.com/git-chglog/git-chglog/cmd/git-chglog
+RUN go get -u github.com/PhilippHeuer/git-chglog/cmd/git-chglog
 
 ############################################################
 # Dockerfile
