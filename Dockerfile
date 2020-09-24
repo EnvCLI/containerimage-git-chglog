@@ -1,13 +1,4 @@
 ############################################################
-# Build Stage
-############################################################
-# Set the base image
-FROM docker.io/golang:1.15
-
-# Build
-RUN go get -u github.com/PhilippHeuer/git-chglog/cmd/git-chglog
-
-############################################################
 # Dockerfile
 ############################################################
 
@@ -17,8 +8,10 @@ FROM docker.io/alpine:latest
 ############################################################
 # Installation
 ############################################################
-RUN apk add --no-cache git
-COPY --from=0 /go/bin/git-chglog /usr/local/bin/git-chglog
+RUN apk add --no-cache bash curl git > /dev/null &&\
+    curl -L -o /usr/local/bin/git-chglog https://github.com/PhilippHeuer/git-chglog/releases/download/v1.0.0/git-chglog_linux_amd64 &&\
+	apk del --no-cache curl > /dev/null
+
 
 ############################################################
 # Execution
